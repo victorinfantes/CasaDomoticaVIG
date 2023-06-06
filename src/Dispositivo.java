@@ -17,23 +17,34 @@ public class Dispositivo {
         generarMacAleatoria();
     }
 
+    public Dispositivo(int id, String ubicacion, String nombre) {
+        this.id = id;
+        this.ubicacion = ubicacion;
+        this.nombre = nombre;
+        generarMacAleatoria();
+    }
+
     //Metodos
 
     public void generarMacAleatoria() {
         int[] numeros = {1, 2, 3, 4, 5, 6, 7, 8, 9};
         char[] letras =  {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
         Random rd = new Random();
-        int numero = numeros[rd.nextInt(numeros.length)];
-        char letra = letras[rd.nextInt(letras.length)];
+
         String mac = "";
-        for (int i = 0; i < 6; i++) {
+        for (int i = 0; i <= 6; i++) {
+            int numero = numeros[rd.nextInt(numeros.length)];
+            char letra = letras[rd.nextInt(letras.length)];
             if (i == 3 || i==6) {
                 for (int j = 0; j < 3; j++) {
                     mac = mac + letra;
                 }
             }
-            mac = mac + numero;
+            if (i!=6) {
+                mac = mac + numero;
+            }
         }
+        this.mac = mac;
     }
 
 
@@ -79,12 +90,6 @@ public class Dispositivo {
 
     @Override
     public String toString() {
-        return "Dispositivo{" +
-                "mac='" + mac + '\'' +
-                ", id=" + id +
-                ", ubicacion='" + ubicacion + '\'' +
-                ", nombre='" + nombre + '\'' +
-                ", encendido=" + encendido +
-                '}';
+        return "Dispositivo(" + "mac:'" + mac + '\'' + ", id:" + id + ", ubicacion:'" + ubicacion + '\'' + ", nombre:'" + nombre + '\'' + ", encendido:" + encendido + ')';
     }
 }
